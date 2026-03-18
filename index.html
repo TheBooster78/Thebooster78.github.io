@@ -1,59 +1,41 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>CACAAACAAAA</title>
-		<meta charset="utf-8">
-		<style type="text/css">
-			body
-			{
-				margin: 0;
-				padding: 0;
-				background:url(cactus2.jpg) no-repeat black;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
-				height: 100vh;
-			}
-			#nocursor
-			{
-				cursor: none;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				position: fixed;
-			}
-		</style>
-	</head>
-	<body>
-		<audio id="son" autoplay loop muted playsinline>
-			<source src="out.mp3" type="audio/mpeg">
-		</audio>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CACAAACAAAA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+      cursor: none;
+    }
 
-		<div id="nocursor"></div>
+    #bg {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <img id="bg" src="cactus2.jpg" alt="">
+  <audio id="sound" autoplay preload="auto">
+    <source src="son.mp3" type="audio/mpeg">
+  </audio>
 
-		<script>
-			const son = document.getElementById('son');
-
-			window.addEventListener('load', async () => {
-				try {
-					son.muted = true;
-					await son.play();
-
-					setTimeout(async () => {
-						try {
-							son.muted = false;
-							son.volume = 1;
-							await son.play();
-						} catch (e) {
-							console.log('Débloqué seulement après interaction utilisateur');
-						}
-					}, 300);
-				} catch (e) {
-					console.log('Autoplay bloqué par le navigateur');
-				}
-			});
-		</script>
-	</body>
+  <script>
+    const sound = document.getElementById("sound");
+    sound.play().catch(() => {
+      console.log("Son auto bloqué par le navigateur");
+    });
+  </script>
+</body>
 </html>
